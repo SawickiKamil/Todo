@@ -7,7 +7,7 @@ export const ServiceTasks = new (class ServiceTasks extends Backend {
     async fetchTasks(): Promise<ITask[]> {
         const { data } = await this.get<IRawTask[]>(`todos`)
 
-        return await Promise.all(data.map((item) => ConverterTask.fromRaw(item)))
+        return data
     }
 
     async fetchTask(id: string): Promise<ITask> {

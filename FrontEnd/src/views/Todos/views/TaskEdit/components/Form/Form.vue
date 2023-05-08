@@ -1,16 +1,16 @@
 <template>
     <LayoutColumn sm>
-        <FieldName v-model="name" :isValid.sync="isNameValid" />
+        <FieldName v-model="name" :is-valid.sync="isNameValid" />
 
-        <FieldDescription v-model="description" :isValid.sync="isDescriptionValid" />
+        <FieldDescription v-model="description" :is-valid.sync="isDescriptionValid" />
 
         <FieldPriority v-model="priority" />
     </LayoutColumn>
 </template>
 
 <script lang="ts">
-import { ITask, ITaskConfig, ITaskFormConfig } from '@/models'
 import Vue from 'vue'
+import { ITask, ITaskConfig, ITaskFormConfig } from '@/models'
 import { FieldName, FieldDescription, FieldPriority } from './components'
 import { LayoutColumn } from '@/layouts'
 

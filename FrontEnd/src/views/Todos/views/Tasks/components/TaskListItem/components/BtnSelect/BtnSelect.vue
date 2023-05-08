@@ -1,5 +1,5 @@
 <template>
-    <BaseBtn v-if="isSelected" @click="setCurrentTaskId(id)" text>
+    <BaseBtn v-if="isSelected" text @click="setCurrentTaskId(id)">
         <VIcon left>{{ mdiCheck }}</VIcon>
 
         Select
@@ -29,6 +29,3 @@ export default storeModuleSelectedTask.extend({
     }),
 })
 </script>
-
-<style scoped>
-</style>
