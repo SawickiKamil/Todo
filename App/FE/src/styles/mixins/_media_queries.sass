@@ -1,0 +1,38 @@
+@use '~vuetify/src/styles/styles.sass' as *
+@use '../variables' as *
+
+=on-xs-only
+    @media #{map-get($display-breakpoints, 'xs-only')}
+        @content
+
+=on-sm-and-up
+    @media #{map-get($display-breakpoints, 'sm-and-up')}
+        @content
+
+=on-sm-and-down
+    @media #{map-get($display-breakpoints, 'sm-and-down')}
+        @content
+
+=on-md-and-up
+    @media #{map-get($display-breakpoints, 'md-and-up')}
+        @content
+
+=on-md-and-down
+    @media #{map-get($display-breakpoints, 'md-and-down')}
+        @content
+
+=on-lg-and-up
+    @media #{map-get($display-breakpoints, 'lg-and-up')}
+        @content
+
+=on-lg-and-down
+    @media #{map-get($display-breakpoints, 'lg-and-down')}
+        @content
+
+=on-app-max-width-and-up
+    @media screen and (min-width: ($app-max-width + 16px))
+        @content
+
+=on-app-max-width-and-down
+    @media screen and (max-width: $app-max-width + 1px)
+        @content

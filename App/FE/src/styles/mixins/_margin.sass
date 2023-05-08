@@ -1,0 +1,32 @@
+@use '../variables' as *
+
+@function get-margin-factor($negative, $factor)
+    @if $negative
+        @return -$factor
+
+    @return $factor
+
+=generate-side-margin($side, $factor, $negative)
+    $factor: get-margin-factor($negative, $factor)
+
+    margin-#{$side}: $app-padding * $factor
+
+=generate-margin($factor, $negative)
+    $factor: get-margin-factor($negative, $factor)
+
+    margin: $app-padding * $factor
+
+=margin($side: null, $factor: 1, $negative: false)
+    @if $side
+        +generate-side-margin($side, $factor, $negative)
+    @else
+        +generate-margin($factor, $negative)
+
+=margin-sm($side: null, $negative: false)
+    +margin($side, .5, $negative)
+
+=margin-xs($side: null, $negative: false)
+    +margin($side, .25, $negative)
+
+=margin-xxs($side: null, $negative: false)
+    +margin($side, .125, $negative)

@@ -1,0 +1,22 @@
+@use '../variables' as *
+
+=generate-side-padding($side, $factor)
+    padding-#{$side}: $app-padding * $factor
+
+=generate-padding($factor)
+    padding: $app-padding * $factor
+
+=padding($side: null, $factor: 1)
+    @if $side
+        +generate-side-padding($side, $factor)
+    @else
+        +generate-padding($factor)
+
+=padding-sm($side: null)
+    +padding($side, .5)
+
+=padding-xs($side: null)
+    +padding($side, .25)
+
+=padding-xxs($side: null)
+    +padding($side, .125)

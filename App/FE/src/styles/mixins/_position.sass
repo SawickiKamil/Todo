@@ -1,0 +1,17 @@
+=position($left: auto, $top: auto, $right: auto, $bottom: auto)
+    left: $left
+    top: $top
+    right: $right
+    bottom: $bottom
+    
+=fixed($args...)
+    position: fixed !important
+    +position($args...)
+    
+=absolute($args...)
+    position: absolute !important
+    +position($args...)
+    
+=relative($args...)
+    position: relative !important
+    +position($args...)

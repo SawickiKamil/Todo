@@ -1,0 +1,17 @@
+@use '~vuetify/src/styles/tools/functions' as *;
+@import '~vuetify/src/styles/settings/colors';
+
+$primary: $teal;
+$error: $red;
+$warning: $yellow;
+$success: $green;
+
+$colors: map-deep-merge(
+    $colors,
+    (
+        'primary': $primary,
+        'error': $error,
+        'warning': $warning,
+        'success': $success,
+    )
+);
