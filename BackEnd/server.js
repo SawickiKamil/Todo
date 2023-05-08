@@ -1,4 +1,5 @@
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 const app = express();
 const cors = require('cors');
 const corsOptions = {
@@ -10,16 +11,15 @@ app.use(cors(corsOptions));
 
 
 let todos = [
-  { id: 1, text: "Buy groceries", isSelected: false },
-  { id: 2, text: "Do laundry", isSelected: false },
-  { id: 3, text: "Clean the house", isSelected: false },
+  { id: uuidv4(), name: "Buy groceries", description: 'Get bread, milk, and eggs', priority: 0 },
+  { id: uuidv4(), name: "Do laundry", description: 'Wash clothes and fold them', priority: 0 },
+  { id: uuidv4(), name: "Clean the house", description: 'Vacuum, dust, and scrub the floors', priority: 2 },
 ];
 
 // Create a new todo item
 app.post('/todos', (req, res) => {
-  const { text } = req.body;
-  const id = todos.length + 1;
-  const newTodo = { id, text };
+  const { name, description, priority } = req.body;
+  const newTodo = { id: uuidv4(), name, description, priority };
   todos.push(newTodo);
   res.json(newTodo);
 });
@@ -31,7 +31,7 @@ app.get('/todos', (req, res) => {
 
 // Retrieve a single todo item by ID
 app.get('/todos/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const todo = todos.find(todo => todo.id === id);
   if (todo) {
     res.json(todo);
@@ -42,11 +42,13 @@ app.get('/todos/:id', (req, res) => {
 
 // Update a todo item by ID
 app.put('/todos/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const todo = todos.find(todo => todo.id === id);
   if (todo) {
-    const { text } = req.body;
-    todo.text = text;
+    const { name, description, priority } = req.body;
+    todo.name = name;
+    todo.description = description;
+    todo.priority = priority;
     res.json(todo);
   } else {
     res.status(404).json({ message: "Todo not found" });
@@ -55,7 +57,7 @@ app.put('/todos/:id', (req, res) => {
 
 // Delete a todo item by ID
 app.delete('/todos/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const index = todos.findIndex(todo => todo.id === id);
   if (index !== -1) {
     todos.splice(index, 1);
